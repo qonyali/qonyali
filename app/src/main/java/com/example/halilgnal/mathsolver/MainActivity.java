@@ -1,6 +1,7 @@
 package com.example.halilgnal.mathsolver;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,10 +25,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnBeginGame = (Button) findViewById(R.id.btnBeginGame);
+        btnBeginGame = findViewById(R.id.btnBeginGame);
         btnBeginGame.setOnClickListener(this);
 
-        itsDropdown = (Spinner) findViewById(R.id.spinner);
+        itsDropdown = findViewById(R.id.spinner);
         ArrayAdapter<QUtil.GameLevel> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, QUtil.GameLevel.values());
         itsDropdown.setAdapter(adapter);
         itsDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
