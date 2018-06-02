@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Math Solver</string>
+    <string name="find_this">TARGET</string>
+    <string name="target_value">Target Value</string>
+    <string name="show_calculation">Calculation</string>
+    <string name="divide">Divide</string>
+    <string name="multiplication">Multiplication</string>
+    <string name="subtraction">Subtraction</string>
+    <string name="addition">Addition</string>
+    <string name="modNotZero">Can\'t divide</string>
+    <string name="VERY_EASY">Very easy</string>
+    <string name="EASY">Easy</string>
+    <string name="NORMAL">Normal</string>
+    <string name="HARD">Hard</string>
+    <string name="VERY_HARD">Very hard</string>
+</resources>

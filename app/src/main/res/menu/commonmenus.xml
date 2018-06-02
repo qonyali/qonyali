@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mn_restart"
+        android:icon="@drawable/ic_restart"
+        android:title="Restart Game"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mn_new"
+        android:icon="@drawable/ic_new"
+        android:title="New Game"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mn_solve"
+        android:icon="@drawable/ic_solve"
+        android:title="Solve Game"
+        app:showAsAction="ifRoom" />
+</menu>
