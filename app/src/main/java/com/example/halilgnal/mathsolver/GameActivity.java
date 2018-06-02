@@ -68,7 +68,8 @@ public class GameActivity extends BaseActivity {
         tvTargetValue = (TextView) findViewById(R.id.targetValue);
         tvShowCalculation = (TextView) findViewById(R.id.showCalculation);
 
-        // test
+        // test2
+        // test neu
 
 
         tvFindThis.setTypeface(normalLcd);
