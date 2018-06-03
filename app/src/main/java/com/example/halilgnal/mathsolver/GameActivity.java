@@ -1,6 +1,5 @@
 package com.example.halilgnal.mathsolver;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
@@ -29,7 +28,7 @@ public class GameActivity extends BaseActivity {
     private int itsLevel;
 
     private ArrayList<Button> btnGameNumberButtons;
-    private TextView tvTargetValue, tvShowCalculation, tvFindThis;
+    private TextView tvTargetValue, tvShowCalculation, tvFindThis, txtTimer;
     private ImageView plusArea, minusArea, multiArea, divArea;
     private Button currentBtn;
     private Step itsStep;
@@ -67,6 +66,7 @@ public class GameActivity extends BaseActivity {
         tvFindThis = (TextView) findViewById(R.id.find_this);
         tvTargetValue = (TextView) findViewById(R.id.targetValue);
         tvShowCalculation = (TextView) findViewById(R.id.showCalculation);
+        txtTimer = findViewById(R.id.txtTimer);
 
         // test2
         // test neu
@@ -75,6 +75,7 @@ public class GameActivity extends BaseActivity {
         tvFindThis.setTypeface(normalLcd);
         tvTargetValue.setTypeface(normalLcd);
         tvShowCalculation.setTypeface(fatLcd);
+        txtTimer.setTypeface(normalLcd);
 
         plusArea = (ImageView) findViewById(R.id.plusArea);
         minusArea = (ImageView) findViewById(R.id.minusArea);
