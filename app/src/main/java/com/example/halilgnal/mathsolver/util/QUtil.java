@@ -1,15 +1,10 @@
 package com.example.halilgnal.mathsolver.util;
 
-import android.content.Context;
-import android.content.res.Resources;
-
 import com.example.halilgnal.mathsolver.App;
-import com.example.halilgnal.mathsolver.MainActivity;
 import com.example.halilgnal.mathsolver.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import android.app.Application;
 
 public final class QUtil  {
 
