@@ -5,6 +5,8 @@ import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.DragEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -55,8 +57,8 @@ public class GameActivity extends BaseActivity {
     }
 
     private void findResources() {
-        Typeface normalLcd = Typeface.createFromAsset(getAssets(),"fonts/digital-dream.regular.ttf");
-        Typeface fatLcd = Typeface.createFromAsset(getAssets(),"fonts/digital-dream.fat-skew.ttf");
+        Typeface normalLcd = Typeface.createFromAsset(getAssets(), "fonts/digital-dream.regular.ttf");
+        Typeface fatLcd = Typeface.createFromAsset(getAssets(), "fonts/digital-dream.fat-skew.ttf");
         for (int i = 0; i < game.getNumbers().length; i++) {
             int btnId = getResources().getIdentifier("button" + (i + 1), "id", getPackageName());
             btnGameNumberButtons.add((Button) findViewById(btnId));
@@ -92,12 +94,33 @@ public class GameActivity extends BaseActivity {
         minusArea.setOnDragListener(new DragListener());
         multiArea.setOnDragListener(new DragListener());
         divArea.setOnDragListener(new DragListener());
+
+        txtTimer.addTextChangedListener(new TextWatcher() {
+                                            @Override
+                                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                                            }
+
+                                            @Override
+                                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                                            }
+
+                                            @Override
+                                            public void afterTextChanged(Editable editable) {
+                                                if (Integer.valueOf(txtTimer.getText().toString()) == 0) {
+                                                    endGame();
+                                                }
+                                            }
+                                        }
+
+        );
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuId = item.getItemId();
-        switch (menuId){
+        switch (menuId) {
             case R.id.mn_new:
                 handleGame.initializeGame(game);
                 findResources();
@@ -120,7 +143,7 @@ public class GameActivity extends BaseActivity {
         GameTimer.initialize(txtTimer);
         GameTimer.start();
         for (int i = 0; i < mathGame.getNumbers().length; i++) {
-            btnGameNumberButtons.get(i).setText(""+mathGame.getNumbers()[i]);
+            btnGameNumberButtons.get(i).setText("" + mathGame.getNumbers()[i]);
             btnGameNumberButtons.get(i).setBackgroundResource(R.drawable.buttonshape);
         }
         tvTargetValue.setText("" + mathGame.getTarget());
@@ -140,7 +163,7 @@ public class GameActivity extends BaseActivity {
         btn.setBackgroundResource(R.drawable.buttonshape_used);
     }
 
-    private void endGame(){
+    private void endGame() {
         for (int i = 0; i < btnGameNumberButtons.size(); i++) {
             disableButton(btnGameNumberButtons.get(i));
         }
@@ -223,7 +246,7 @@ public class GameActivity extends BaseActivity {
                             break;
                         case R.id.divArea:
                             // TODO: handle if mod != 0
-                            if(calculation % parseInt(item.getText().toString()) > 0){
+                            if (calculation % parseInt(item.getText().toString()) > 0) {
                                 tvShowCalculation.setText(R.string.modNotZero);
                                 System.out.println("log 1");
                                 return true;
@@ -236,7 +259,7 @@ public class GameActivity extends BaseActivity {
                             break;
                     }
 
-                    if(handleGame.compareResult(game,total)){
+                    if (handleGame.compareResult(game, total)) {
                         tvShowCalculation.setText("u win: " + total);
                         endGame();
                         return true;
@@ -248,7 +271,7 @@ public class GameActivity extends BaseActivity {
                     handleGame.addStep(itsStep);
                     if (moveCount % 2 == 1) {
                         currentBtn.setOnTouchListener(new MyTouchListener());
-                        currentBtn.setText(""+calculation);
+                        currentBtn.setText("" + calculation);
                         currentBtn.setBackgroundResource(R.drawable.buttonshape);
                         total = 0;
                         calculation = 0;
@@ -276,6 +299,7 @@ public class GameActivity extends BaseActivity {
             return false;
         }
     }
+
 
     private final class DeleteTouchListener implements OnTouchListener {
         public boolean onTouch(View view, MotionEvent motionEvent) {

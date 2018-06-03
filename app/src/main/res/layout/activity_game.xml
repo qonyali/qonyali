@@ -36,7 +36,7 @@
                     android:id="@+id/find_this"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.26"
+                    android:layout_weight="0.27"
                     android:gravity="right|center_vertical"
                     android:text="@string/find_this"
                     android:textSize="42sp" />
@@ -45,10 +45,11 @@
                     android:id="@+id/txtTimer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.74"
-                    android:gravity="right|center_vertical"
+                    android:layout_margin="3dp"
+                    android:layout_weight="0.73"
+                    android:gravity="top|right"
                     android:text="@string/txtTimer"
-                    android:textSize="42sp" />
+                    android:textSize="21sp" />
             </LinearLayout>
 
             <TextView
