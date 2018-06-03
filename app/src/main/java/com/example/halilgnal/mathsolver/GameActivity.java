@@ -116,6 +116,9 @@ public class GameActivity extends BaseActivity {
     }
 
     private void setGame(Game mathGame) {
+        GameTimer.stop();
+        GameTimer.initialize(txtTimer);
+        GameTimer.start();
         for (int i = 0; i < mathGame.getNumbers().length; i++) {
             btnGameNumberButtons.get(i).setText(""+mathGame.getNumbers()[i]);
             btnGameNumberButtons.get(i).setBackgroundResource(R.drawable.buttonshape);
@@ -130,7 +133,6 @@ public class GameActivity extends BaseActivity {
         moveCount = 0;
         calculation = 0;
         total = 0;
-
     }
 
     private void disableButton(Button btn) {
@@ -142,6 +144,7 @@ public class GameActivity extends BaseActivity {
         for (int i = 0; i < btnGameNumberButtons.size(); i++) {
             disableButton(btnGameNumberButtons.get(i));
         }
+        GameTimer.stop();
     }
 
     public class DragListener extends Activity implements View.OnDragListener {
