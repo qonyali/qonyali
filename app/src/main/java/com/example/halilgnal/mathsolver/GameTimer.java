@@ -1,5 +1,6 @@
 package com.example.halilgnal.mathsolver;
 
+import android.app.Activity;
 import android.widget.TextView;
 
 import java.util.Date;
@@ -7,7 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 
-public class GameTimer {
+public class GameTimer extends Activity{
 
     private static final Logger LOGGER = Logger.getLogger("GameTimer");
 
@@ -22,7 +23,7 @@ public class GameTimer {
     private volatile static Timer timer;
 
     private TextView itsTextView;
-    private int itsCount = 3;
+    private int itsCount = 60;
 
     private GameTimer(TextView theTextView)
     {
@@ -82,13 +83,20 @@ public class GameTimer {
     /*
      * A Sub class to run timer task
      */
-    private class TimerTaskJob extends TimerTask {
+    private class TimerTaskJob extends TimerTask  {
 
         private final Logger TIMER_LOGGER = Logger.getLogger("TimerTaskJob");
 
         @Override
         public void run() {
             doTask();
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    itsTextView.setText(Integer.toString(itsCount));
+                }
+            });
         }
 
         void start() {
@@ -105,8 +113,7 @@ public class GameTimer {
         }
 
         private void doTask() {
-
-            itsTextView.setText(Integer.toString(itsCount));
+            //itsTextView.setText(Integer.toString(itsCount));
 
             if(itsCount == 0)
                 GameTimer.stop();
