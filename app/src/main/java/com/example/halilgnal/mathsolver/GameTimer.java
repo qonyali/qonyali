@@ -1,6 +1,6 @@
 package com.example.halilgnal.mathsolver;
 
-import android.app.Activity;
+import android.os.Handler;
 import android.widget.TextView;
 
 import java.util.Date;
@@ -8,7 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 
-public class GameTimer extends Activity{
+public class GameTimer {
 
     private static final Logger LOGGER = Logger.getLogger("GameTimer");
 
@@ -21,12 +21,15 @@ public class GameTimer extends Activity{
     private volatile static TimerTaskJob task;
     private volatile static TimerTaskJob timerTask;
     private volatile static Timer timer;
+    private volatile int itsCount = 60;
 
+    // UI controls
     private TextView itsTextView;
-    private int itsCount = 60;
+    private Handler itsHandler;
 
-    private GameTimer(TextView theTextView)
+    private GameTimer(TextView theTextView, Handler theHandler)
     {
+        itsHandler = theHandler;
         itsTextView = theTextView;
     }
 
@@ -35,7 +38,7 @@ public class GameTimer extends Activity{
      *
      * @return returns the singleton instance
      */
-    public static GameTimer initialize(TextView theTextView) {
+    public static GameTimer initialize(TextView theTextView, Handler theHandler) {
 
         if (timerSingleton == null) {
 
@@ -43,7 +46,7 @@ public class GameTimer extends Activity{
 
                 if (timerSingleton == null) {
 
-                    timerSingleton = new GameTimer(theTextView);
+                    timerSingleton = new GameTimer(theTextView, theHandler);
                     task = timerSingleton.new TimerTaskJob();
                     isRunning = false;
                 }
@@ -56,7 +59,6 @@ public class GameTimer extends Activity{
     public static void start() {
 
         if (!isRunning) {
-
             isRunning = true;
             task.start();
             LOGGER.info("Starting " + JOB_NAME + " " + new Date());
@@ -89,14 +91,15 @@ public class GameTimer extends Activity{
 
         @Override
         public void run() {
-            doTask();
-
-            runOnUiThread(new Runnable() {
+            itsHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     itsTextView.setText(Integer.toString(itsCount));
+                    itsCount--;
                 }
             });
+
+            doTask();
         }
 
         void start() {
@@ -113,12 +116,8 @@ public class GameTimer extends Activity{
         }
 
         private void doTask() {
-            //itsTextView.setText(Integer.toString(itsCount));
-
             if(itsCount == 0)
                 GameTimer.stop();
-            else
-                itsCount--;
         }
     }
 

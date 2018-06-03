@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.DragEvent;
@@ -39,10 +40,13 @@ public class GameActivity extends BaseActivity {
     private int calculation = 0;
     private int moveCount = 0;
 
+    private Handler itsHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        itsHandler = new Handler();
         itsIntent = getIntent();
         itsLevel = itsIntent.getIntExtra("game_level", 0);
 
@@ -140,7 +144,7 @@ public class GameActivity extends BaseActivity {
 
     private void setGame(Game mathGame) {
         GameTimer.stop();
-        GameTimer.initialize(txtTimer);
+        GameTimer.initialize(txtTimer, itsHandler);
         GameTimer.start();
         for (int i = 0; i < mathGame.getNumbers().length; i++) {
             btnGameNumberButtons.get(i).setText("" + mathGame.getNumbers()[i]);
