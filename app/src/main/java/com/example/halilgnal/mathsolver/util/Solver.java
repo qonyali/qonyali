@@ -1,10 +1,10 @@
 package com.example.halilgnal.mathsolver.util;
 
-import com.example.halilgnal.mathsolver.Operation.Add;
-import com.example.halilgnal.mathsolver.Operation.Divide;
-import com.example.halilgnal.mathsolver.Operation.Multiply;
-import com.example.halilgnal.mathsolver.Operation.Operation;
-import com.example.halilgnal.mathsolver.Operation.Subtract;
+import com.example.halilgnal.mathsolver.operation.Add;
+import com.example.halilgnal.mathsolver.operation.Divide;
+import com.example.halilgnal.mathsolver.operation.Multiply;
+import com.example.halilgnal.mathsolver.operation.Subtract;
+import com.example.halilgnal.mathsolver.operation.Operation;
 
 import java.util.ArrayList;
 import java.util.Arrays;

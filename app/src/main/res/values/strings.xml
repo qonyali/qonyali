@@ -14,4 +14,5 @@
     <string name="NORMAL">Normal</string>
     <string name="HARD">Hard</string>
     <string name="VERY_HARD">Very hard</string>
+    <string name="U_WIN">You win the game in %1$s Seconds</string>
 </resources>

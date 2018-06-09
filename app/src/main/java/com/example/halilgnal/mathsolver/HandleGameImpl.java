@@ -69,7 +69,7 @@ public class HandleGameImpl implements HandleGame {
                 for (i = 0; i < itsSteps.size(); i = i + 2) {
 
                     aStep += +itsSteps.get(i).getNum() + itsSteps.get(i + 1).getSign() + itsSteps.get(i + 1).getNum()
-                            + "=" + itsSteps.get(i + 1).getResult()
+                            + " =  " + itsSteps.get(i + 1).getResult()
                             + System.getProperty("line.separator");
                 }
             }
@@ -119,17 +119,35 @@ public class HandleGameImpl implements HandleGame {
 
 
         switch (theLevel) {
-
             //TODO:
             case VERY_EASY:
-                //aGeneratedNumbers = QUtil.generateNumber(QUtil.itsVeryEasyMin, QUtil.itsVeryEasyMax);
+                for (int i = 0; i < QUtil.itsArrayLength; i++) {
+                    aGeneratedNumbers = QUtil.generateNumber(1, 10);
+                    if (!QUtil.containsValue(lstGeneratedNumbers, aGeneratedNumbers)) {
+                        lstGeneratedNumbers[i] = aGeneratedNumbers;
+                    } else {
+                        i--;
+                    }
+                }
                 break;
             case EASY:
-                //aGeneratedNumbers =  QUtil.generateNumber(QUtil.itsEasyMin, QUtil.itsEasyMax);
-                break;
+                for (int i = 0; i < QUtil.itsArrayLength; i++) {
+                    aGeneratedNumbers = QUtil.generateNumber(1, 10);
+                    if (!QUtil.containsValue(lstGeneratedNumbers, aGeneratedNumbers)) {
+                        lstGeneratedNumbers[i] = aGeneratedNumbers;
+                    } else {
+                        i--;
+                    }
+                }                break;
             case NORMAL:
-                //generatedNumber =  QUtil.generateNumber(QUtil.itsNormalMin, QUtil.itsNormalMax);
-                break;
+                for (int i = 0; i < QUtil.itsArrayLength; i++) {
+                    aGeneratedNumbers = QUtil.generateNumber(1, 10);
+                    if (!QUtil.containsValue(lstGeneratedNumbers, aGeneratedNumbers)) {
+                        lstGeneratedNumbers[i] = aGeneratedNumbers;
+                    } else {
+                        i--;
+                    }
+                }                break;
             case HARD:
 
                 for (int i = 0; i < QUtil.itsArrayLength; i++) {

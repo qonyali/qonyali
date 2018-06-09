@@ -8,9 +8,9 @@ import java.util.Arrays;
 
 public final class QUtil  {
 
-    public static final int itsVeryEasyMin = 1, itsVeryEasyMax = 10;
-    public static final int itsEasyMin = 10, itsEasyMax = 100;
-    public static final int itsNormalMin = 100, itsNormalMax = 300;
+    public static final int itsVeryEasyMin = 10, itsVeryEasyMax = 25;
+    public static final int itsEasyMin = 25, itsEasyMax = 50;
+    public static final int itsNormalMin = 50, itsNormalMax = 300;
     public static final int itsHardMin = 300, itsHardMax = 1000;
     public static final int itsVeryHardMin = 1000, itsVeryHardMax = 10000;
 

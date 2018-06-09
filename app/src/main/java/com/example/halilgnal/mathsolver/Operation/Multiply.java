@@ -1,4 +1,4 @@
-package com.example.halilgnal.mathsolver.Operation;
+package com.example.halilgnal.mathsolver.operation;
 
 public class Multiply implements Operation {
 

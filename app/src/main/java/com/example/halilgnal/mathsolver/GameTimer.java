@@ -15,6 +15,7 @@ public class GameTimer {
     private static final String JOB_NAME = "Timer task";
     private static final long JOB_START_DELAY = 0L;
     private static final long JOB_FREQUENCY = 1000L;
+    private static int itsElapsedTime = 0;
 
     private volatile static GameTimer timerSingleton;
     private volatile static boolean isRunning;
@@ -72,6 +73,7 @@ public class GameTimer {
             isRunning = false;
             task.stop();
             timerSingleton = null;
+            itsElapsedTime = 0;
             LOGGER.info("Stopping " + JOB_NAME + " " + new Date());
         }
     }
@@ -80,6 +82,11 @@ public class GameTimer {
 
         LOGGER.info("Running: " + isRunning + " " + JOB_NAME + " " + new Date());
         return isRunning;
+    }
+
+    public static int getElapsedTime()
+    {
+        return itsElapsedTime;
     }
 
     /*
@@ -91,15 +98,17 @@ public class GameTimer {
 
         @Override
         public void run() {
+
+            doTask();
+
             itsHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    itsTextView.setText(Integer.toString(itsCount));
                     itsCount--;
+                    itsTextView.setText(Integer.toString(itsCount));
+                    itsElapsedTime++;
                 }
             });
-
-            doTask();
         }
 
         void start() {

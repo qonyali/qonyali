@@ -102,12 +102,10 @@ public class GameActivity extends BaseActivity {
         txtTimer.addTextChangedListener(new TextWatcher() {
                                             @Override
                                             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
                                             }
 
                                             @Override
                                             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
                                             }
 
                                             @Override
@@ -154,12 +152,13 @@ public class GameActivity extends BaseActivity {
     }
 
     private void resetGame() {
-        setGame(game);
-        tvShowCalculation.setText("reset");
-        implementEvents();
         moveCount = 0;
         calculation = 0;
         total = 0;
+        setGame(game);
+        tvShowCalculation.setText("reset");
+        implementEvents();
+
     }
 
     private void disableButton(Button btn) {
@@ -172,6 +171,9 @@ public class GameActivity extends BaseActivity {
             disableButton(btnGameNumberButtons.get(i));
         }
         GameTimer.stop();
+        total = 0;
+        calculation = 0;
+        moveCount = 0;
     }
 
     public class DragListener extends Activity implements View.OnDragListener {
@@ -236,17 +238,17 @@ public class GameActivity extends BaseActivity {
                         case R.id.plusArea:
                             total = total + parseInt(item.getText().toString());
                             calculation += parseInt(item.getText().toString());
-                            itsStep.setSign("+");
+                            itsStep.setSign(" + ");
                             break;
                         case R.id.minusArea:
                             total = (total == 0) ? parseInt(item.getText().toString()) : total - parseInt(item.getText().toString());
                             calculation = (calculation == 0) ? parseInt(item.getText().toString()) : calculation - parseInt(item.getText().toString());
-                            itsStep.setSign("-");
+                            itsStep.setSign(" - ");
                             break;
                         case R.id.multiArea:
                             total = (total == 0) ? parseInt(item.getText().toString()) : total * parseInt(item.getText().toString());
                             calculation = (calculation == 0) ? parseInt(item.getText().toString()) : calculation * parseInt(item.getText().toString());
-                            itsStep.setSign("*");
+                            itsStep.setSign(" * ");
                             break;
                         case R.id.divArea:
                             // TODO: handle if mod != 0
@@ -258,13 +260,14 @@ public class GameActivity extends BaseActivity {
                                 System.out.println("log 2");
                                 total = (total == 0) ? parseInt(item.getText().toString()) : total / parseInt(item.getText().toString());
                                 calculation = (calculation == 0) ? parseInt(item.getText().toString()) : calculation / parseInt(item.getText().toString());
-                                itsStep.setSign("/");
+                                itsStep.setSign(" / ");
                             }
                             break;
                     }
 
                     if (handleGame.compareResult(game, total)) {
-                        tvShowCalculation.setText("u win: " + total);
+                        //tvShowCalculation.setText("u win in " + GameTimer.getElapsedTime() +  getResources().getString(R.string.SECONDS).toString()+System.getProperty("line.separator") + total);
+                        tvShowCalculation.setText(App.getContext().getResources().getString(R.string.U_WIN, System.getProperty("line.separator") + GameTimer.getElapsedTime() + System.getProperty("line.separator")));
                         endGame();
                         return true;
                     }
